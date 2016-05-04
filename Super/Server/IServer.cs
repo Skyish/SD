@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace SharedServerInfo
 {
-    interface IServer
+    public interface IServer
     {
         void Register(string id, ICxMsg mb);
 
@@ -15,7 +15,7 @@ namespace Server
         void SendMsg(string id, string msg);
     }
 
-    interface ICxMsg
+    public interface ICxMsg
     {
         void AcceptMsg(string id, string msg);
     }

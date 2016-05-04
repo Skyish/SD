@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.Server;
+using SharedServerInfo;
 
 namespace Client
 {
-    class MyCxMsg : MarshalByRefObject, ICxMsg
+    [Serializable]
+    class MyCxMsgClient : ICxMsg
     {
         public void AcceptMsg(string id, string msg)
         {
@@ -22,9 +19,9 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            MyCxMsg msb = new MyCxMsg();
+            ICxMsg msb = new MyCxMsgClient();
 
-            IServer server = (IServer)Activator.GetObject(typeof(IServer), "http://localhost:8888");
+            IServer server = (IServer)Activator.GetObject(typeof(IServer), "http://localhost:8888/Server.soap");
             server.Register("Skyish", msb);
             server.SendMsg("Skyish", "Hello World");
         }

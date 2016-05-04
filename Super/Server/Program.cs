@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels.Http;
 using System.Runtime.Remoting.Channels;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Server;
+using SharedServerInfo;
 
 
-namespace Server
+namespace SharedServerInfo
 {
 
     class Server : MarshalByRefObject, IServer
@@ -19,6 +17,7 @@ namespace Server
     
         public void Register(string id, ICxMsg mb)
         {
+            Console.WriteLine("Register => " + id);
             mailBoxes.Add(id, mb);
         }
 
@@ -41,7 +40,18 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            
+            //Criar o Canal Http
+            HttpChannel ch = new HttpChannel(8888);
+            // Registar o canal
+            ChannelServices.RegisterChannel(ch, false);
+            // Registar o type RemoteAlunoFactory como Server Activated Object (SAO)
+            RemotingConfiguration.RegisterWellKnownServiceType(
+            typeof(Server),
+            "Server.soap",
+            WellKnownObjectMode.Singleton);
+            // Espera pedidos
+            Console.WriteLine("Server: Espera pedidos...Prima Enter para terminar\n");
+            Console.ReadLine();
         }
     }
 }
