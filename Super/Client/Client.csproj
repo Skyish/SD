@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stockManager\Item.cs" />
+    <Compile Include="stockManager\StockReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -63,6 +65,9 @@
       <Project>{FCD8616E-6064-4E3F-8EC8-36BD49F2F6BF}</Project>
       <Name>SharedInterfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="stockManager\items\textItem.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

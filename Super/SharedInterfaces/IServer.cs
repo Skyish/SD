@@ -9,6 +9,17 @@ namespace SharedServerInfo
     
     public interface IStockManager
     {
-        string GetProducts();
+        void SetItem(IItem i);
+
+        IItem GetProducts();
+    }
+
+    public interface IItem
+    {
+        string Name { get; set; }
+
+        float Price { get; set; }
+
+        int Quantity { get; set; }
     }
 }

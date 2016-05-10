@@ -13,7 +13,10 @@ namespace Server
 
         public void Register(IStockManager sm)
         {
-            Console.WriteLine(sm.GetProducts());
+
+            Console.WriteLine(sm.GetProducts().Name);
+            Console.WriteLine(sm.GetProducts().Price);
+            Console.WriteLine(sm.GetProducts().Quantity);
             Console.WriteLine("Hello world seems I'm getting a stock manager!");
         }
 
