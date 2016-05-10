@@ -1,17 +1,14 @@
-﻿using System;
-using SharedServerInfo;
+﻿using SharedServerInfo;
+using System;
+using System.Runtime.Remoting;
 
 namespace Client
 {
-    [Serializable]
-    class MyCxMsgClient : ICxMsg
+    class MyStockManager : MarshalByRefObject, IStockManager
     {
-        public void AcceptMsg(string id, string msg)
+        public string GetProducts()
         {
-            Console.WriteLine("\n\n\n #####################");
-            Console.WriteLine("Remetente => " + id);
-            Console.WriteLine("Mensagem => " + msg);
-            Console.WriteLine("##################### \n\n\n ");
+            return "I got cocain and weed for sale!";
         }
     }
 
@@ -19,11 +16,17 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            ICxMsg msb = new MyCxMsgClient();
+            RemotingConfiguration.Configure("Client.exe.config", false);
 
-            IServer server = (IServer)Activator.GetObject(typeof(IServer), "http://localhost:8888/Server.soap");
-            server.Register("Skyish", msb);
-            server.SendMsg("Skyish", "Hello World");
+            //ICxMsg msb = new MyCxMsgClient();
+
+            WellKnownClientTypeEntry[] entries = RemotingConfiguration.GetRegisteredWellKnownClientTypes();
+            Console.WriteLine(entries[0].TypeName + " " + entries[0].ObjectType + " " + entries[0].ObjectUrl);
+            IServer server = (IServer)Activator.GetObject(entries[0].ObjectType, entries[0].ObjectUrl);
+            server.Register(new MyStockManager());
+            Console.ReadLine();
+            //server.Register("Skyish", msb);
+            //server.SendMsg("Skyish", "Hello World");
         }
     }
 }
