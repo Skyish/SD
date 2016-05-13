@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Item xmlns:inventory="items">
+  <inventory:Name>Carne</inventory:Name>
+  <inventory:Price>5</inventory:Price>
+  <inventory:Quantity>20</inventory:Quantity>
+</Item>

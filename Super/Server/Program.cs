@@ -9,23 +9,53 @@ namespace Server
     class Server : MarshalByRefObject, IServer
     {
 
-        //Dictionary<string, ICxMsg> mailBoxes = new Dictionary<string, ICxMsg>();
+        public Server()
+        {
+            Console.WriteLine("Server inited");
+        }
+
+        ~Server()
+        {
+            Console.WriteLine("Server destroyed");
+        }
+
+        private List<IStockManager> sm = new List<IStockManager>();
+
+        public List<IStockManager> getStockManagers()
+        {
+            return sm;
+        }
+
+        public void PrintStockManager()
+        {
+            Console.WriteLine("Trying to print objects");
+            foreach (IStockManager manager in sm)
+            {
+                foreach(string key in manager.GetProducts().Keys)
+                Console.WriteLine(key);
+            }
+            Console.WriteLine("################################################");
+        }
 
         public void Register(IStockManager sm)
         {
-
-            Console.WriteLine(sm.GetProducts().Name);
-            Console.WriteLine(sm.GetProducts().Price);
-            Console.WriteLine(sm.GetProducts().Quantity);
-            Console.WriteLine("Hello world seems I'm getting a stock manager!");
+            this.sm.Add(sm);
         }
 
+        public void Unregister(IStockManager sm)
+        {
+            Console.WriteLine("Going to unregister");
+            Console.WriteLine(this.sm.Contains(sm));
+            this.sm.Remove(sm);
+        }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
+            //configurar channel em código!
+
             RemotingConfiguration.Configure("Server.exe.config", false);
             
             // Espera pedidos

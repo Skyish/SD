@@ -11,20 +11,27 @@ namespace Client.stockManager
     class StockReader
     {
 
-        public IItem DeserializeObject(string fileName)
+        public static Dictionary<string, IItem> DeserializeItems(string[] itemsPath)
         {
-            Console.WriteLine("reading file => " + fileName);
-
-            XmlSerializer ser = new XmlSerializer(typeof(Item));
-
-            IItem i;
-
-            using (Stream reader = new FileStream(fileName, FileMode.Open))
+            Dictionary<string, IItem> items = new Dictionary<string, IItem>();
+            foreach(string s in itemsPath)
             {
-                i = (IItem)ser.Deserialize(reader);
+                IItem item = Deserialize(s);
+                items.Add(item.Name, item);
+            }
+            return items;
+        }
+
+        private static IItem Deserialize(string path)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(Item));
+            IItem item;
+            using (Stream reader = new FileStream(path, FileMode.Open))
+            {
+                item = (IItem)ser.Deserialize(reader);
             }
 
-            return i;
+            return item;
         }
 
     }

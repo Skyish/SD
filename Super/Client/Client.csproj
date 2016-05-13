@@ -46,15 +46,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stockManager\Item.cs" />
+    <Compile Include="stockManager\StockManager.cs" />
     <Compile Include="stockManager\StockReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Server\Server.csproj">
@@ -67,7 +65,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="stockManager\items\textItem.xml" />
+    <Content Include="stockManager\items\Carne.xml" />
+    <Content Include="stockManager\items\Cereais.xml" />
+    <Content Include="stockManager\items\Leite.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

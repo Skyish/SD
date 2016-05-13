@@ -1,17 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SharedServerInfo
 {
     public interface IServer
     {
         void Register(IStockManager sm);
+
+        void Unregister(IStockManager sm);
+
+        void PrintStockManager();
+
+        List<IStockManager> getStockManagers();
     }
     
     public interface IStockManager
     {
-        void SetItem(IItem i);
+        IItem GetProduct(string name, int quantity);
 
-        IItem GetProducts();
+        IItem GetProduct(string name);
+
+        Dictionary<string, IItem> GetProducts();
     }
 
     public interface IItem
