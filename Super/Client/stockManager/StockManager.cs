@@ -39,5 +39,19 @@ namespace Client.stockManager
         {
             return items;
         }
+
+        public override object InitializeLifetimeService()
+        {
+            ILease lease = (ILease)base.InitializeLifetimeService();
+            lease.Register(new StockManagerSponsor());
+            if (lease.CurrentState == LeaseState.Initial)
+            {
+                lease.InitialLeaseTime = TimeSpan.FromSeconds(20);
+                lease.RenewOnCallTime = TimeSpan.FromSeconds(5);
+                lease.SponsorshipTimeout = TimeSpan.FromSeconds(10);
+            }
+            return lease;
+
+        }
     }
 }

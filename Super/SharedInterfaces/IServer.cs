@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Lifetime;
 
 namespace SharedServerInfo
 {
@@ -7,7 +8,7 @@ namespace SharedServerInfo
     {
         void Register(IStockManager sm);
 
-        void Unregister(IStockManager sm);
+        bool Unregister(IStockManager sm);
 
         void PrintStockManager();
 
@@ -30,5 +31,23 @@ namespace SharedServerInfo
         float Price { get; set; }
 
         int Quantity { get; set; }
+    }
+
+    public interface IStockManagerSponsor : ISponsor
+    {
+        new TimeSpan Renewal(ILease lease);
+    }
+
+    public interface IRingConnection
+    {
+        void SetServer(IServer server);
+
+        void Connect(string url);
+
+        void Disconect();
+
+        int GetStock(string product);
+
+        int GetRemoteStock(string product);
     }
 }

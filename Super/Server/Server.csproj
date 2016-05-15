@@ -51,6 +51,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="connectionhandlers\RingConnection.cs" />
+    <Compile Include="connectionhandlers\Server.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

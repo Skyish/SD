@@ -42,10 +42,5 @@ namespace Client
             this.manager = new StockManager(items);
             server.Register(manager);
         }
-
-        ~Client()
-        {
-            server.Unregister(manager);
-        }
     }
 }

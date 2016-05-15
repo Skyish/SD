@@ -1,66 +1,79 @@
 ﻿using SharedServerInfo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Http;
+using System.Runtime.Serialization.Formatters;
 
-
-namespace Server
+namespace ConnectionHandlers
 {
-    class Server : MarshalByRefObject, IServer
-    {
-
-        public Server()
-        {
-            Console.WriteLine("Server inited");
-        }
-
-        ~Server()
-        {
-            Console.WriteLine("Server destroyed");
-        }
-
-        private List<IStockManager> sm = new List<IStockManager>();
-
-        public List<IStockManager> getStockManagers()
-        {
-            return sm;
-        }
-
-        public void PrintStockManager()
-        {
-            Console.WriteLine("Trying to print objects");
-            foreach (IStockManager manager in sm)
-            {
-                foreach(string key in manager.GetProducts().Keys)
-                Console.WriteLine(key);
-            }
-            Console.WriteLine("################################################");
-        }
-
-        public void Register(IStockManager sm)
-        {
-            this.sm.Add(sm);
-        }
-
-        public void Unregister(IStockManager sm)
-        {
-            Console.WriteLine("Going to unregister");
-            Console.WriteLine(this.sm.Contains(sm));
-            this.sm.Remove(sm);
-        }
-    }
-
     class Program
     {
+
+
         static void Main(string[] args)
         {
             //configurar channel em código!
 
             RemotingConfiguration.Configure("Server.exe.config", false);
+
+            var serverProvider = new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full };
+            var clientProvider = new BinaryClientFormatterSinkProvider();
+
+            IDictionary props = new Hashtable();
+            props["port"] = args[0];
+
+            HttpChannel channel = new HttpChannel(props, clientProvider, serverProvider);
+            ChannelServices.RegisterChannel(channel, false);
+
+            Console.WriteLine(args.Length);
+
+
+            IServer server = (IServer)Activator.GetObject(typeof(IServer), "http://localhost:" + args[0] + "/Server.soap");
+            IRingConnection rc = (IRingConnection) Activator.GetObject(typeof (IRingConnection), "http://localhost:" + args[0] + "/IRingConnection.soap");
+            rc.SetServer(server);
+            //RingConnection rc = new RingConnection();
+            if (args.Length > 1)
+            {
+                rc.Connect(args[1]);
+            }
+
+            Dictionary<string, Action<string>> commands = new Dictionary<string, Action<string>>();
+            commands.Add("connect", (s)=> {
+                rc.Connect(s);
+            });
+
+            commands.Add("getStock", (s) =>
+            {
+                Console.WriteLine(rc.GetStock(s));
+            });
+
+            commands.Add("getRemoteStock", (s) =>
+            {
+                Console.WriteLine(rc.GetRemoteStock(s));
+            });
+
+            string com;
+            while ((com = Console.ReadLine()) != "quit")
+            {
+                if (!string.IsNullOrWhiteSpace(com))
+                {
+                    string[] vals = com.Split(' ');
+
+                    if (vals.Length >= 2 && commands.ContainsKey(vals[0]))
+                    {
+                        commands[vals[0]](vals[1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Command");
+                    }
+
+                }
+            }
             
-            // Espera pedidos
-            Console.WriteLine("Server: Espera pedidos...Prima Enter para terminar\n");
-            Console.ReadLine();
         }
     }
 }
