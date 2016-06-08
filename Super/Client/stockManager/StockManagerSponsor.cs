@@ -18,7 +18,6 @@ namespace Client.stockManager
 
         public TimeSpan Renewal(ILease lease)
         {
-            Console.WriteLine("invoked to renewal the stock manager!");
             lastRenewal = DateTime.Now;
             return TimeSpan.FromSeconds(10);
         }

@@ -13,11 +13,6 @@ namespace ConnectionHandlers
         private IRingConnection ringCon;
         private IServer server;
 
-        public RingConnection()
-        {
-            Console.WriteLine("ParameterLess constructor invoked!");
-        }
-
         public void SetServer(IServer server)
         {
             this.server = server;
@@ -31,7 +26,7 @@ namespace ConnectionHandlers
 
         public void Disconect()
         {
-            ringCon.Disconect();
+            this.ringCon = null;
         }
 
         public int GetRemoteStock(string product)
@@ -41,8 +36,6 @@ namespace ConnectionHandlers
 
         public int GetStock(string product)
         {
-            server.PrintStockManager();
-
             return server.getStockManagers().First().GetProduct(product).Quantity;
         }
     }

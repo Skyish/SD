@@ -29,8 +29,6 @@ namespace Client
             server.PrintStockManager();
 
             Console.ReadLine();
-
-            server.PrintStockManager();
         }
 
         private IServer server;

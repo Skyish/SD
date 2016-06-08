@@ -15,8 +15,6 @@ namespace ConnectionHandlers
 
         static void Main(string[] args)
         {
-            //configurar channel em código!
-
             RemotingConfiguration.Configure("Server.exe.config", false);
 
             var serverProvider = new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full };
@@ -34,7 +32,7 @@ namespace ConnectionHandlers
             IServer server = (IServer)Activator.GetObject(typeof(IServer), "http://localhost:" + args[0] + "/Server.soap");
             IRingConnection rc = (IRingConnection) Activator.GetObject(typeof (IRingConnection), "http://localhost:" + args[0] + "/IRingConnection.soap");
             rc.SetServer(server);
-            //RingConnection rc = new RingConnection();
+
             if (args.Length > 1)
             {
                 rc.Connect(args[1]);
