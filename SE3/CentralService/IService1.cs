@@ -9,13 +9,15 @@ namespace CentralService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface ICentralService
     {
-        [OperationContract]
-        string GetData(int value);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        void Register(Theme theme, string language);
+
+        [OperationContract]
+        void UnRegister(Theme theme);
+
 
         // TODO: Add your service operations here
     }
@@ -23,23 +25,18 @@ namespace CentralService
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "CentralService.ContractType".
     [DataContract]
-    public class CompositeType
+    public class Theme
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
         [DataMember]
-        public bool BoolValue
+        public string theme
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get;
         }
 
-        [DataMember]
-        public string StringValue
+        //TODO DataContract não disponibiliza constructor no serviço, alterar provavelmente para set...
+        public Theme(string name)
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            this.theme = name;
         }
     }
 }

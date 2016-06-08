@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using ChatService.Translator;
+using ChatService.CentralService;
 
 namespace ChatService
 {
@@ -12,6 +14,9 @@ namespace ChatService
     {
         public string GetData(int value)
         {
+
+            Translator t = new Translator();
+
             return string.Format("You entered: {0}", value);
         }
 
