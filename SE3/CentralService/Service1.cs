@@ -10,9 +10,12 @@ namespace CentralService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CentralService : ICentralService
     {
-        public void Register(Theme theme, string language)
+        public string Register(Theme theme, string language)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(theme.theme);
+            Console.WriteLine(language);
+
+            return "Gotcha! " + theme.theme + " || " + language;
         }
 
         public void UnRegister(Theme theme)
@@ -20,24 +23,4 @@ namespace CentralService
             throw new NotImplementedException();
         }
     }
-
-
-    /*
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }*/
 }

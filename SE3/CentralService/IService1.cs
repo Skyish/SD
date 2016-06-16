@@ -12,8 +12,10 @@ namespace CentralService
     public interface ICentralService
     {
 
+        //Dictionary<Theme, List<>>
+
         [OperationContract]
-        void Register(Theme theme, string language);
+        string Register(Theme theme, string language);
 
         [OperationContract]
         void UnRegister(Theme theme);
@@ -31,12 +33,7 @@ namespace CentralService
         public string theme
         {
             get;
-        }
-
-        //TODO DataContract não disponibiliza constructor no serviço, alterar provavelmente para set...
-        public Theme(string name)
-        {
-            this.theme = name;
+            set;
         }
     }
 }

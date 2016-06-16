@@ -6,6 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralService", "CentralService\CentralService.csproj", "{465EFA2F-DB6A-465A-9682-8D0CC121105E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService", "ChatService\ChatService.csproj", "{FA373B5E-2AA5-4199-A7B1-58D1475ACCF8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{465EFA2F-DB6A-465A-9682-8D0CC121105E} = {465EFA2F-DB6A-465A-9682-8D0CC121105E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E792E28F-E7E2-4D7B-94C8-066FA619BB62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA373B5E-2AA5-4199-A7B1-58D1475ACCF8} = {FA373B5E-2AA5-4199-A7B1-58D1475ACCF8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{FA373B5E-2AA5-4199-A7B1-58D1475ACCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA373B5E-2AA5-4199-A7B1-58D1475ACCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA373B5E-2AA5-4199-A7B1-58D1475ACCF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E792E28F-E7E2-4D7B-94C8-066FA619BB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E792E28F-E7E2-4D7B-94C8-066FA619BB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E792E28F-E7E2-4D7B-94C8-066FA619BB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E792E28F-E7E2-4D7B-94C8-066FA619BB62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

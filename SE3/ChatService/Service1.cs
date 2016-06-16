@@ -14,23 +14,16 @@ namespace ChatService
     {
         public string GetData(int value)
         {
+            //LanguageServiceClient translator = new LanguageServiceClient();
 
-            Translator t = new Translator();
+            CentralServiceClient centralCervice = new CentralServiceClient();
 
-            return string.Format("You entered: {0}", value);
-        }
+            Theme t = new Theme();
+            t.theme = "Sports";
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            string resp = centralCervice.Register(t, "Congulense");
+
+            return resp;
         }
     }
 }

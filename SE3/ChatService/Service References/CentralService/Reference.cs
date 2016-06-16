@@ -63,10 +63,10 @@ namespace ChatService.CentralService {
     public interface ICentralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        void Register(ChatService.CentralService.Theme theme, string language);
+        string Register(ChatService.CentralService.Theme theme, string language);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        System.Threading.Tasks.Task RegisterAsync(ChatService.CentralService.Theme theme, string language);
+        System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, string language);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/UnRegister", ReplyAction="http://tempuri.org/ICentralService/UnRegisterResponse")]
         void UnRegister(ChatService.CentralService.Theme theme);
@@ -102,11 +102,11 @@ namespace ChatService.CentralService {
                 base(binding, remoteAddress) {
         }
         
-        public void Register(ChatService.CentralService.Theme theme, string language) {
-            base.Channel.Register(theme, language);
+        public string Register(ChatService.CentralService.Theme theme, string language) {
+            return base.Channel.Register(theme, language);
         }
         
-        public System.Threading.Tasks.Task RegisterAsync(ChatService.CentralService.Theme theme, string language) {
+        public System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, string language) {
             return base.Channel.RegisterAsync(theme, language);
         }
         
