@@ -21,7 +21,10 @@ namespace ChatService
             Theme t = new Theme();
             t.theme = "Sports";
 
-            string resp = centralCervice.Register(t, "Congulense");
+            ChatServiceInfo info = new ChatServiceInfo();
+            info.URL = "lelelelel";
+            info.language = "Congulense";
+            string resp = centralCervice.Register(t, info);
 
             return resp;
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatService.chatManager;
+using ChatService.configManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,6 +13,8 @@ namespace ChatService
     class Init
     {
 
+        private static ChatServiceHostManager service;
+
         static void Main(string[] args)
         {
 
@@ -20,29 +24,39 @@ namespace ChatService
                 return;
             }
 
-            Uri address = new Uri(string.Format("http://localhost:{0}/ChatService/", args[0]));
+            service = new ChatServiceHostManager(args[0]);
+            service.OpenService();
 
-            using (ServiceHost serviceHost = new ServiceHost(typeof(Service1), address))
+            Console.WriteLine("Service is running!");
+
+            char[] delimiter = new char[] { ' ' };
+            string cmd;
+            while((cmd = Console.ReadLine()) != "exit")
             {
-                serviceHost.AddServiceEndpoint(typeof(IService1), new WSHttpBinding(), "");
-
-                ServiceMetadataBehavior smb = (ServiceMetadataBehavior)serviceHost.Description.Behaviors.Find<ServiceMetadataBehavior>();
-
-                if(smb == null)
+                string[] commands = cmd.Split(delimiter);
+                switch (commands[0])
                 {
-                    smb = new ServiceMetadataBehavior();
-                    smb.HttpGetEnabled = true;
-                    serviceHost.Description.Behaviors.Add(smb);
+                    case "newChat":
+                        beginNewChat(commands);
+                        break;
+                    case "end":
+                        Console.WriteLine("Should be ending chat");
+                        break;
                 }
-
-                serviceHost.Open();
-
-                Console.WriteLine("Service is running!");
-                Console.ReadLine();
-                
-
             }
+
+            service.CloseService();
+            
         }
- 
+
+        private static void beginNewChat(string[] commands)
+        {
+            if(commands.Length < 3)
+            {
+                Console.WriteLine("Must provide language and theme");
+            }
+            ChatServiceManager chat = new ChatServiceManager(commands[1], commands[2], service.URL);
+            Console.WriteLine(chat.Connect());
+        }
     }
 }

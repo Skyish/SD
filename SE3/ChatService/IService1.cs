@@ -15,16 +15,5 @@ namespace ChatService
         string GetData(int value);
 
     }
-
-    [DataContract]
-    public class ChatServiceInfo {
-
-        [DataMember]
-        public string URL;
-
-        [DataMember]
-        public string language;
-
-    }
     
 }

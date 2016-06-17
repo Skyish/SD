@@ -48,6 +48,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="centralServiceManager\CentralServiceManager.cs" />
+    <Compile Include="chatManager\ChatServiceManager.cs" />
+    <Compile Include="configManager\ChatServiceConfigurationManager.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

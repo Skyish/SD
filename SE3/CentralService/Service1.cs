@@ -10,15 +10,13 @@ namespace CentralService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class CentralService : ICentralService
     {
-        public string Register(Theme theme, string language)
+        public string Register(Theme theme, ChatServiceInfo chatInfo)
         {
-            Console.WriteLine(theme.theme);
-            Console.WriteLine(language);
-
-            return "Gotcha! " + theme.theme + " || " + language;
+            
+            return "Gotcha! " + theme.theme + " || " + chatInfo.language + " || " + chatInfo.URL;
         }
 
-        public void UnRegister(Theme theme)
+        public void UnRegister(Theme theme, ChatServiceInfo chatInfo)
         {
             throw new NotImplementedException();
         }

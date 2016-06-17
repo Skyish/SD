@@ -58,21 +58,82 @@ namespace ChatService.CentralService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatServiceInfo", Namespace="http://schemas.datacontract.org/2004/07/CentralService")]
+    [System.SerializableAttribute()]
+    public partial class ChatServiceInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string URLField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string languageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string URL {
+            get {
+                return this.URLField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.URLField, value) != true)) {
+                    this.URLField = value;
+                    this.RaisePropertyChanged("URL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string language {
+            get {
+                return this.languageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.languageField, value) != true)) {
+                    this.languageField = value;
+                    this.RaisePropertyChanged("language");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CentralService.ICentralService")]
     public interface ICentralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        string Register(ChatService.CentralService.Theme theme, string language);
+        string Register(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, string language);
+        System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/UnRegister", ReplyAction="http://tempuri.org/ICentralService/UnRegisterResponse")]
-        void UnRegister(ChatService.CentralService.Theme theme);
+        void UnRegister(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/UnRegister", ReplyAction="http://tempuri.org/ICentralService/UnRegisterResponse")]
-        System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme);
+        System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -102,20 +163,20 @@ namespace ChatService.CentralService {
                 base(binding, remoteAddress) {
         }
         
-        public string Register(ChatService.CentralService.Theme theme, string language) {
-            return base.Channel.Register(theme, language);
+        public string Register(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+            return base.Channel.Register(theme, chatInfo);
         }
         
-        public System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, string language) {
-            return base.Channel.RegisterAsync(theme, language);
+        public System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+            return base.Channel.RegisterAsync(theme, chatInfo);
         }
         
-        public void UnRegister(ChatService.CentralService.Theme theme) {
-            base.Channel.UnRegister(theme);
+        public void UnRegister(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+            base.Channel.UnRegister(theme, chatInfo);
         }
         
-        public System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme) {
-            return base.Channel.UnRegisterAsync(theme);
+        public System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+            return base.Channel.UnRegisterAsync(theme, chatInfo);
         }
     }
 }

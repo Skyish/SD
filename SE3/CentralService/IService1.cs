@@ -15,10 +15,10 @@ namespace CentralService
         //Dictionary<Theme, List<>>
 
         [OperationContract]
-        string Register(Theme theme, string language);
+        string Register(Theme theme, ChatServiceInfo chatInfo);
 
         [OperationContract]
-        void UnRegister(Theme theme);
+        void UnRegister(Theme theme, ChatServiceInfo chatInfo);
 
 
         // TODO: Add your service operations here
@@ -34,6 +34,23 @@ namespace CentralService
         {
             get;
             set;
+        }
+    }
+
+    [DataContract]
+    public class ChatServiceInfo
+    {
+
+        [DataMember]
+        public string URL;
+
+        [DataMember]
+        public string language;
+
+        public override bool Equals(object obj)
+        {
+            ChatServiceInfo csi = (ChatServiceInfo) obj;
+            return csi.URL == this.URL && csi.language == this.language;
         }
     }
 }

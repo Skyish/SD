@@ -6,4 +6,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Theme" nillable="true" type="tns:Theme" />
+  <xs:complexType name="ChatServiceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="language" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChatServiceInfo" nillable="true" type="tns:ChatServiceInfo" />
 </xs:schema>
