@@ -15,51 +15,6 @@ namespace ChatService.CentralService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Theme", Namespace="http://schemas.datacontract.org/2004/07/CentralService")]
-    [System.SerializableAttribute()]
-    public partial class Theme : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string themeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string theme {
-            get {
-                return this.themeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.themeField, value) != true)) {
-                    this.themeField = value;
-                    this.RaisePropertyChanged("theme");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ChatServiceInfo", Namespace="http://schemas.datacontract.org/2004/07/CentralService")]
     [System.SerializableAttribute()]
     public partial class ChatServiceInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -124,16 +79,16 @@ namespace ChatService.CentralService {
     public interface ICentralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        string Register(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
+        ChatService.CentralService.ChatServiceInfo[] Register(string theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
-        System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
+        System.Threading.Tasks.Task<ChatService.CentralService.ChatServiceInfo[]> RegisterAsync(string theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/UnRegister", ReplyAction="http://tempuri.org/ICentralService/UnRegisterResponse")]
-        void UnRegister(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
+        string UnRegister(string theme, ChatService.CentralService.ChatServiceInfo chatInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/UnRegister", ReplyAction="http://tempuri.org/ICentralService/UnRegisterResponse")]
-        System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo);
+        System.Threading.Tasks.Task<string> UnRegisterAsync(string theme, ChatService.CentralService.ChatServiceInfo chatInfo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -163,19 +118,19 @@ namespace ChatService.CentralService {
                 base(binding, remoteAddress) {
         }
         
-        public string Register(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+        public ChatService.CentralService.ChatServiceInfo[] Register(string theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
             return base.Channel.Register(theme, chatInfo);
         }
         
-        public System.Threading.Tasks.Task<string> RegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+        public System.Threading.Tasks.Task<ChatService.CentralService.ChatServiceInfo[]> RegisterAsync(string theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
             return base.Channel.RegisterAsync(theme, chatInfo);
         }
         
-        public void UnRegister(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
-            base.Channel.UnRegister(theme, chatInfo);
+        public string UnRegister(string theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+            return base.Channel.UnRegister(theme, chatInfo);
         }
         
-        public System.Threading.Tasks.Task UnRegisterAsync(ChatService.CentralService.Theme theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
+        public System.Threading.Tasks.Task<string> UnRegisterAsync(string theme, ChatService.CentralService.ChatServiceInfo chatInfo) {
             return base.Channel.UnRegisterAsync(theme, chatInfo);
         }
     }

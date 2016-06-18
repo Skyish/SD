@@ -20,14 +20,14 @@ namespace ChatService.centralServiceManager
         }
 
 
-        public string RegisterChat(Theme theme)
+        public ChatServiceInfo[] RegisterChat(string theme)
         {
             return centralService.Register(theme, chatInfo);
         }
 
-        public void UnregisterChat(Theme theme)
+        public string UnregisterChat(string theme)
         {
-            centralService.UnRegister(theme, chatInfo);
+            return centralService.UnRegister(theme, chatInfo);
         }
     }
 }

@@ -4,29 +4,31 @@
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="theme" nillable="true" type="q1:Theme" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="chatInfo" nillable="true" type="q2:ChatServiceInfo" />
+        <xs:element minOccurs="0" name="theme" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="chatInfo" nillable="true" type="q1:ChatServiceInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="RegisterResult" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="RegisterResult" nillable="true" type="q2:ArrayOfChatServiceInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UnRegister">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="theme" nillable="true" type="q3:Theme" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="chatInfo" nillable="true" type="q4:ChatServiceInfo" />
+        <xs:element minOccurs="0" name="theme" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CentralService" minOccurs="0" name="chatInfo" nillable="true" type="q3:ChatServiceInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UnRegisterResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnRegisterResult" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

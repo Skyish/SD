@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CentralService.chatRoomManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,18 +8,23 @@ using System.Text;
 
 namespace CentralService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class CentralService : ICentralService
     {
-        public string Register(Theme theme, ChatServiceInfo chatInfo)
+
+        private ChatRoomManager manager = new ChatRoomManager();
+
+        public List<ChatServiceInfo> Register(string theme, ChatServiceInfo chatInfo)
         {
-            
-            return "Gotcha! " + theme.theme + " || " + chatInfo.language + " || " + chatInfo.URL;
+            return manager.JoinChatRoom(theme, chatInfo);
         }
 
-        public void UnRegister(Theme theme, ChatServiceInfo chatInfo)
+        public string UnRegister(string theme, ChatServiceInfo chatInfo)
         {
-            throw new NotImplementedException();
+
+            manager.LeaveChatRoom(theme, chatInfo);
+
+            return "Bye from " + theme + " || " + chatInfo.language + " || " + chatInfo.URL + " || " + manager.GetStats();
         }
     }
 }

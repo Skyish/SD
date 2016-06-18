@@ -15,26 +15,13 @@ namespace CentralService
         //Dictionary<Theme, List<>>
 
         [OperationContract]
-        string Register(Theme theme, ChatServiceInfo chatInfo);
+        List<ChatServiceInfo> Register(string theme, ChatServiceInfo chatInfo);
 
         [OperationContract]
-        void UnRegister(Theme theme, ChatServiceInfo chatInfo);
+        string UnRegister(string theme, ChatServiceInfo chatInfo);
 
 
         // TODO: Add your service operations here
-    }
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "CentralService.ContractType".
-    [DataContract]
-    public class Theme
-    {
-        [DataMember]
-        public string theme
-        {
-            get;
-            set;
-        }
     }
 
     [DataContract]

@@ -10,7 +10,7 @@ namespace CentralService.chatRoomManager
     {
         public string theme { get; }
 
-        private List<ChatServiceInfo> participants { get; }
+        public List<ChatServiceInfo> participants { get; }
 
         public ChatRoom(string theme)
         {
@@ -27,6 +27,11 @@ namespace CentralService.chatRoomManager
         public void RemoveParticipant(ChatServiceInfo client)
         {
             participants.Remove(client);
+        }
+
+        internal string GetCount()
+        {
+            return participants.Count.ToString();
         }
     }
 }

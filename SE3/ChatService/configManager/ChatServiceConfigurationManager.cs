@@ -23,9 +23,9 @@ namespace ChatService.configManager
 
             Uri address = new Uri(URL);
 
-            serviceHost = new ServiceHost(typeof(Service1), address);
+            serviceHost = new ServiceHost(typeof(ChatServiceClient), address);
 
-            serviceHost.AddServiceEndpoint(typeof(IService1), new WSHttpBinding(), "");
+            serviceHost.AddServiceEndpoint(typeof(IChatService), new WSHttpBinding(), "");
 
             ServiceMetadataBehavior smb = (ServiceMetadataBehavior)serviceHost.Description.Behaviors.Find<ServiceMetadataBehavior>();
 
