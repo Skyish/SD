@@ -11,22 +11,46 @@ namespace CentralService.chatRoomManager
 
         private Dictionary<string, ChatRoom> chatRooms = new Dictionary<string, ChatRoom>();
 
-        public List<ChatServiceInfo> JoinChatRoom(string theme, ChatServiceInfo participant)
+        public List<ChatServiceInfo> JoinChatRoom(string theme, ChatServiceInfo participant, INewParticipantAnnouncer cli)
         {
             if (!chatRooms.Keys.Contains(theme))
             {
                 CreateChatRoom(theme);
             }
-            chatRooms[theme].AddParticipant(participant);
 
-            return chatRooms[theme].participants;
+            AnnounceNewClient(chatRooms[theme], participant);
+
+            chatRooms[theme].AddParticipant(participant, cli);
+
+            return chatRooms[theme].clientsServices;
+        }
+
+        public void AnnounceNewClient(ChatRoom room, ChatServiceInfo newParticipant)
+        {
+
+            foreach (INewParticipantAnnouncer client in room.clients.Values)
+            {
+                client.newAnnounce(newParticipant);
+            }
+        }
+
+        public void AnnounceLeavingClient(ChatRoom room, ChatServiceInfo leavingClient)
+        {
+            foreach(INewParticipantAnnouncer client in room.clients.Values)
+            {
+                client.newDisconnect(leavingClient);
+            }
         }
 
         public void LeaveChatRoom(string theme, ChatServiceInfo participant)
         {
             if (!chatRooms.Keys.Contains(theme))
                 return;
+
+            AnnounceLeavingClient(chatRooms[theme], participant);
+
             chatRooms[theme].RemoveParticipant(participant);
+            
         }
 
         public string GetStats()

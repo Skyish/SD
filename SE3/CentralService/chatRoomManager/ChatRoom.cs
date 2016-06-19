@@ -10,28 +10,36 @@ namespace CentralService.chatRoomManager
     {
         public string theme { get; }
 
-        public List<ChatServiceInfo> participants { get; }
+        public Dictionary<string, INewParticipantAnnouncer> clients { get; }
+
+        public List<ChatServiceInfo> clientsServices { get; }
 
         public ChatRoom(string theme)
         {
             this.theme = theme;
-            this.participants = new List<ChatServiceInfo>();
+            this.clientsServices = new List<ChatServiceInfo>();
+            this.clients = new Dictionary<string, INewParticipantAnnouncer>();
         }
 
-        public void AddParticipant(ChatServiceInfo client)
+        public void AddParticipant(ChatServiceInfo clientService, INewParticipantAnnouncer client)
         {
-            if(!participants.Contains(client))
-                participants.Add(client);
+            if (!clientsServices.Contains(clientService))
+            {
+                clientsServices.Add(clientService);
+                clients.Add(clientService.URL, client);
+            }
+                
         }
 
-        public void RemoveParticipant(ChatServiceInfo client)
+        public void RemoveParticipant(ChatServiceInfo clientService)
         {
-            participants.Remove(client);
+            clientsServices.Remove(clientService);
+            clients.Remove(clientService.URL);
         }
 
         internal string GetCount()
         {
-            return participants.Count.ToString();
+            return clientsServices.Count.ToString();
         }
     }
 }

@@ -75,7 +75,7 @@ namespace ChatService.CentralService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CentralService.ICentralService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CentralService.ICentralService", CallbackContract=typeof(ChatService.CentralService.ICentralServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface ICentralService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/Register", ReplyAction="http://tempuri.org/ICentralService/RegisterResponse")]
@@ -92,30 +92,41 @@ namespace ChatService.CentralService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICentralServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/newAnnounce", ReplyAction="http://tempuri.org/ICentralService/newAnnounceResponse")]
+        void newAnnounce(ChatService.CentralService.ChatServiceInfo newClient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICentralService/newDisconnect", ReplyAction="http://tempuri.org/ICentralService/newDisconnectResponse")]
+        void newDisconnect(ChatService.CentralService.ChatServiceInfo leavingClient);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ICentralServiceChannel : ChatService.CentralService.ICentralService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CentralServiceClient : System.ServiceModel.ClientBase<ChatService.CentralService.ICentralService>, ChatService.CentralService.ICentralService {
+    public partial class CentralServiceClient : System.ServiceModel.DuplexClientBase<ChatService.CentralService.ICentralService>, ChatService.CentralService.ICentralService {
         
-        public CentralServiceClient() {
+        public CentralServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public CentralServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public CentralServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public CentralServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public CentralServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public CentralServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public CentralServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public CentralServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public CentralServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public ChatService.CentralService.ChatServiceInfo[] Register(string theme, ChatService.CentralService.ChatServiceInfo chatInfo) {

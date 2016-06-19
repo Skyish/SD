@@ -8,7 +8,8 @@ using System.Text;
 
 namespace CentralService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Reentrant, IncludeExceptionDetailInFaults = true)]
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class CentralService : ICentralService
     {
 
@@ -16,12 +17,12 @@ namespace CentralService
 
         public List<ChatServiceInfo> Register(string theme, ChatServiceInfo chatInfo)
         {
-            return manager.JoinChatRoom(theme, chatInfo);
+            INewParticipantAnnouncer cli = OperationContext.Current.GetCallbackChannel<INewParticipantAnnouncer>();
+            return manager.JoinChatRoom(theme, chatInfo, cli);
         }
 
         public string UnRegister(string theme, ChatServiceInfo chatInfo)
         {
-
             manager.LeaveChatRoom(theme, chatInfo);
 
             return "Bye from " + theme + " || " + chatInfo.language + " || " + chatInfo.URL + " || " + manager.GetStats();

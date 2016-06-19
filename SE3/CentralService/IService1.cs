@@ -7,21 +7,15 @@ using System.Text;
 
 namespace CentralService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(INewParticipantAnnouncer))]
     public interface ICentralService
     {
-
-        //Dictionary<Theme, List<>>
-
         [OperationContract]
         List<ChatServiceInfo> Register(string theme, ChatServiceInfo chatInfo);
 
         [OperationContract]
         string UnRegister(string theme, ChatServiceInfo chatInfo);
 
-
-        // TODO: Add your service operations here
     }
 
     [DataContract]
@@ -39,5 +33,15 @@ namespace CentralService
             ChatServiceInfo csi = (ChatServiceInfo) obj;
             return csi.URL == this.URL && csi.language == this.language;
         }
+    }
+
+    // CallBack interface 
+    public interface INewParticipantAnnouncer
+    {
+        [OperationContract(IsOneWay = false)]
+        void newAnnounce(ChatServiceInfo newClient);
+
+        [OperationContract(IsOneWay = false)]
+        void newDisconnect(ChatServiceInfo leavingClient);
     }
 }

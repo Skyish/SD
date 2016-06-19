@@ -40,24 +40,11 @@ namespace ChatService
                     case "newChat":
                         beginNewChat(commands);
                         break;
-                    case "leaveChat":
-                        LeaveChat(commands);
-                        break;
                 }
             }
 
             service.CloseService();
             
-        }
-
-        private static void LeaveChat(string[] commands)
-        {
-            if (commands.Length < 3)
-            {
-                Console.WriteLine("Must provide theme and language");
-            }
-            ChatServiceManager chat = new ChatServiceManager(commands[1], commands[2], service.URL);
-            Console.WriteLine(chat.Disconnect());
         }
 
         private static void beginNewChat(string[] commands)
@@ -67,36 +54,7 @@ namespace ChatService
                 Console.WriteLine("Must provide theme and language");
             }
             ChatServiceManager chat = new ChatServiceManager(commands[1], commands[2], service.URL);
-
-            foreach(ChatServiceInfo csi in chat.Connect())
-            {
-                Console.WriteLine(csi.URL);
-                Console.WriteLine(csi.language);
-                if(csi.URL != service.URL)
-                {
-                    connectWithChatParticipant(csi.URL, csi.language, commands[1]);
-                }
-                
-            }
-        }
-
-        //TODO callback to be notified of new participant in chat, refactor this function for a proper class
-        private static void connectWithChatParticipant(string url, string language, string theme)
-        {
-            WSHttpBinding bind = new WSHttpBinding();
-
-            EndpointAddress epAddress = new EndpointAddress(url);
-
-            ChatServiceHost.ChatServiceClient chatClient = new ChatServiceHost.ChatServiceClient(bind, epAddress);
-
-            string cmd;
-            while ((cmd = Console.ReadLine()) != ":exit")
-            {
-                chatClient.SendMessage(cmd);     
-            }
-
-            chatClient.Close();
-            LeaveChat(new string[] { theme, language });
+            chat.connectWithChatParticipants(chat.Connect());
         }
     }
 }
