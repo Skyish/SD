@@ -16,15 +16,16 @@ namespace ChatService.chatManager
         private readonly ChatServiceInfo info;
         private readonly CentralServiceManager centralService;
 
-        private Dictionary<string, ChatServiceHost.ChatServiceClient> chatClients = new Dictionary<string, ChatServiceHost.ChatServiceClient>();
+        private Dictionary<string, ChatService> chatClients = new Dictionary<string, ChatService>();
 
-        public ChatServiceManager(string theme, string language, string URL)
+        public ChatServiceManager(string theme, string language, string URL, string username)
         {
             this.theme = theme;
 
             this.info = new ChatServiceInfo();
             info.URL = URL;
             info.language = language;
+            info.username = username;
 
             this.centralService = new CentralServiceManager(info, this);
         }
@@ -44,9 +45,12 @@ namespace ChatService.chatManager
             string message;
             while ((message = Console.ReadLine()) != ":exit")
             {
-                foreach(ChatServiceHost.ChatServiceClient client in chatClients.Values)
+                foreach(ChatService client in chatClients.Values)
                 {
-                    client.SendMessage(message);
+                    //TODO translate!!
+                    Translator.LanguageServiceClient translator = new Translator.LanguageServiceClient();
+                    string translated = translator.Translate("F4E6E0444F32B660BED9908E9744594B53D2E864", message, info.language, client.chatInfo.language, "text/plain", "", "");
+                    client.chatClient.SendMessage(info.username ,translated);
                 }
             }
 
@@ -56,12 +60,12 @@ namespace ChatService.chatManager
 
         private void closeConnectionsWithClients()
         {
-            foreach(ChatServiceHost.ChatServiceClient client in chatClients.Values)
+            foreach(ChatService client in chatClients.Values)
             {
-                client.Close();
+                client.chatClient.Close();
             }
 
-            chatClients = new Dictionary<string, ChatServiceHost.ChatServiceClient>();
+            chatClients = new Dictionary<string, ChatService>();
         }
 
         internal void connectWithChatParticipants(ChatServiceInfo[] chatServiceInfos)
@@ -83,7 +87,7 @@ namespace ChatService.chatManager
 
             ChatServiceHost.ChatServiceClient chatClient = new ChatServiceHost.ChatServiceClient(bind, epAddress);
 
-            this.chatClients.Add(participant.URL, chatClient);
+            this.chatClients.Add(participant.URL, new ChatService(participant, chatClient));
         }
 
         public void newAnnounce(ChatServiceInfo newClient)
@@ -97,7 +101,7 @@ namespace ChatService.chatManager
         {
             if (chatClients.ContainsKey(leavingClient.URL))
             {
-                chatClients[leavingClient.URL].Close();
+                chatClients[leavingClient.URL].chatClient.Close();
                 chatClients.Remove(leavingClient.URL);
             }
         }

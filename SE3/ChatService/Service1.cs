@@ -12,9 +12,11 @@ namespace ChatService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class ChatServiceClient : IChatService
     {
-        public void SendMessage(string message)
+        public void SendMessage(string username, string message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine();
+            Console.WriteLine(username + " => " + message);
+            Console.WriteLine();
         }
     }
 }

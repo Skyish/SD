@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="centralServiceManager\CentralServiceManager.cs" />
+    <Compile Include="chatManager\ChatService.cs" />
     <Compile Include="chatManager\ChatServiceManager.cs" />
     <Compile Include="configManager\ChatServiceConfigurationManager.cs" />
     <Compile Include="Init.cs" />

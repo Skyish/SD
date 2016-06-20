@@ -16,10 +16,10 @@ namespace ChatService.ChatServiceHost {
     public interface IChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        void SendMessage(string message);
+        void SendMessage(string username, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        System.Threading.Tasks.Task SendMessageAsync(string message);
+        System.Threading.Tasks.Task SendMessageAsync(string username, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace ChatService.ChatServiceHost {
                 base(binding, remoteAddress) {
         }
         
-        public void SendMessage(string message) {
-            base.Channel.SendMessage(message);
+        public void SendMessage(string username, string message) {
+            base.Channel.SendMessage(username, message);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(string message) {
-            return base.Channel.SendMessageAsync(message);
+        public System.Threading.Tasks.Task SendMessageAsync(string username, string message) {
+            return base.Channel.SendMessageAsync(username, message);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ChatService
     public interface IChatService
     {
         [OperationContract]
-        void SendMessage(string message);
+        void SendMessage(string username, string message);
 
     }
     

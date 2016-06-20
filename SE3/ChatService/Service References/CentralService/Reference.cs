@@ -28,6 +28,9 @@ namespace ChatService.CentralService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string languageField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string usernameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -60,6 +63,19 @@ namespace ChatService.CentralService {
                 if ((object.ReferenceEquals(this.languageField, value) != true)) {
                     this.languageField = value;
                     this.RaisePropertyChanged("language");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
+                    this.usernameField = value;
+                    this.RaisePropertyChanged("username");
                 }
             }
         }

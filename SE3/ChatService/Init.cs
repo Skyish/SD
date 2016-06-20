@@ -19,9 +19,9 @@ namespace ChatService
         static void Main(string[] args)
         {
 
-            if (args.Length < 1)
+            if (args.Length < 2)
             {
-                Console.WriteLine("Must provide a port");
+                Console.WriteLine("Must provide a port and username");
                 return;
             }
 
@@ -38,7 +38,7 @@ namespace ChatService
                 switch (commands[0])
                 {
                     case "newChat":
-                        beginNewChat(commands);
+                        beginNewChat(commands, args[1]);
                         break;
                 }
             }
@@ -47,13 +47,14 @@ namespace ChatService
             
         }
 
-        private static void beginNewChat(string[] commands)
+        private static void beginNewChat(string[] commands, string username)
         {
             if(commands.Length < 3)
             {
                 Console.WriteLine("Must provide theme and language");
+                return;
             }
-            ChatServiceManager chat = new ChatServiceManager(commands[1], commands[2], service.URL);
+            ChatServiceManager chat = new ChatServiceManager(commands[1], commands[2], service.URL, username);
             chat.connectWithChatParticipants(chat.Connect());
         }
     }

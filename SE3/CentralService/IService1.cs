@@ -28,6 +28,9 @@ namespace CentralService
         [DataMember]
         public string language;
 
+        [DataMember]
+        public string username;
+
         public override bool Equals(object obj)
         {
             ChatServiceInfo csi = (ChatServiceInfo) obj;
