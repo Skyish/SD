@@ -1,0 +1,10 @@
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\Client.exe.config
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\Client.exe
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\Client.pdb
+C:\Users\cristianorosario\Documents\SD\Super\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\cristianorosario\Documents\SD\Super\Client\obj\Debug\Client.exe
+C:\Users\cristianorosario\Documents\SD\Super\Client\obj\Debug\Client.pdb
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\Server.exe
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\SharedInterfaces.dll
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\SharedInterfaces.pdb
+C:\Users\cristianorosario\Documents\SD\Super\Client\bin\Debug\Server.pdb

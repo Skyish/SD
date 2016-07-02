@@ -1,0 +1,6 @@
+C:\Users\cristianorosario\Documents\SD\SE3\Test\bin\Debug\Test.exe.config
+C:\Users\cristianorosario\Documents\SD\SE3\Test\bin\Debug\Test.exe
+C:\Users\cristianorosario\Documents\SD\SE3\Test\bin\Debug\Test.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\Test\obj\Debug\Test.exe
+C:\Users\cristianorosario\Documents\SD\SE3\Test\obj\Debug\Test.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

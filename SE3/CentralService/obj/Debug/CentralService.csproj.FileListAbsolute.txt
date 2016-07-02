@@ -1,0 +1,6 @@
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\bin\Debug\CentralService.dll.config
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\bin\Debug\CentralService.dll
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\bin\Debug\CentralService.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\obj\Debug\CentralService.dll
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\obj\Debug\CentralService.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\CentralService\obj\Debug\CentralService.csprojResolveAssemblyReference.cache

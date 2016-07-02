@@ -1,0 +1,9 @@
+<publishData>
+  <publishTarget publishUrl="http://localhost/">
+    <file relUrl="bin/CentralService.dll.config" publishTime="06/16/2016 22:20:01" />
+    <file relUrl="bin/CentralService.pdb" publishTime="06/16/2016 22:30:01" />
+    <file relUrl="bin/CentralService.dll" publishTime="06/16/2016 22:30:01" />
+    <file relUrl="Web.config" publishTime="06/16/2016 22:20:01" />
+    <file relUrl="CentralService.CentralService.svc" publishTime="06/16/2016 22:33:24" />
+  </publishTarget>
+</publishData>

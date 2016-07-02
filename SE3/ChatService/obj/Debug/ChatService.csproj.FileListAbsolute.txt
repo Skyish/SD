@@ -1,0 +1,6 @@
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\bin\Debug\ChatService.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\obj\Debug\ChatService.pdb
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\bin\Debug\ChatService.exe.config
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\bin\Debug\ChatService.exe
+C:\Users\cristianorosario\Documents\SD\SE3\ChatService\obj\Debug\ChatService.exe

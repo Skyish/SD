@@ -15,6 +15,7 @@ namespace ChatService.chatManager
         private readonly string theme;
         private readonly ChatServiceInfo info;
         private readonly CentralServiceManager centralService;
+        private readonly Translator.LanguageServiceClient translator;
 
         private Dictionary<string, ChatService> chatClients = new Dictionary<string, ChatService>();
 
@@ -26,6 +27,7 @@ namespace ChatService.chatManager
             info.URL = URL;
             info.language = language;
             info.username = username;
+            translator = new Translator.LanguageServiceClient();
 
             this.centralService = new CentralServiceManager(info, this);
         }
@@ -47,8 +49,6 @@ namespace ChatService.chatManager
             {
                 foreach(ChatService client in chatClients.Values)
                 {
-                    //TODO translate!!
-                    Translator.LanguageServiceClient translator = new Translator.LanguageServiceClient();
                     string translated = translator.Translate("F4E6E0444F32B660BED9908E9744594B53D2E864", message, info.language, client.chatInfo.language, "text/plain", "", "");
                     client.chatClient.SendMessage(info.username ,translated);
                 }
@@ -88,6 +88,7 @@ namespace ChatService.chatManager
             ChatServiceHost.ChatServiceClient chatClient = new ChatServiceHost.ChatServiceClient(bind, epAddress);
 
             this.chatClients.Add(participant.URL, new ChatService(participant, chatClient));
+
         }
 
         public void newAnnounce(ChatServiceInfo newClient)

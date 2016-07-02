@@ -1,0 +1,5 @@
+C:\Users\cristianorosario\Documents\SD\Super\SharedInterfaces\bin\Debug\SharedInterfaces.dll
+C:\Users\cristianorosario\Documents\SD\Super\SharedInterfaces\bin\Debug\SharedInterfaces.pdb
+C:\Users\cristianorosario\Documents\SD\Super\SharedInterfaces\obj\Debug\SharedInterfaces.dll
+C:\Users\cristianorosario\Documents\SD\Super\SharedInterfaces\obj\Debug\SharedInterfaces.pdb
+C:\Users\cristianorosario\Documents\SD\Super\SharedInterfaces\obj\Debug\SharedInterfaces.csprojResolveAssemblyReference.cache

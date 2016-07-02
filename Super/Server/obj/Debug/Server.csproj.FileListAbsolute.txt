@@ -1,0 +1,10 @@
+C:\Users\cristianorosario\Documents\SD\Super\Server\bin\Debug\Server.exe.config
+C:\Users\cristianorosario\Documents\SD\Super\Server\bin\Debug\Server.exe
+C:\Users\cristianorosario\Documents\SD\Super\Server\bin\Debug\Server.pdb
+C:\Users\cristianorosario\Documents\SD\Super\Server\obj\Debug\Server.exe
+C:\Users\cristianorosario\Documents\SD\Super\Server\obj\Debug\Server.pdb
+C:\Users\cristianorosario\Documents\SD\Super\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\cristianorosario\Documents\SD\Super\Server\obj\Debug\Server.Properties.Resources.resources
+C:\Users\cristianorosario\Documents\SD\Super\Server\obj\Debug\Server.csproj.GenerateResource.Cache
+C:\Users\cristianorosario\Documents\SD\Super\Server\bin\Debug\SharedInterfaces.dll
+C:\Users\cristianorosario\Documents\SD\Super\Server\bin\Debug\SharedInterfaces.pdb
