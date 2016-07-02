@@ -45,6 +45,7 @@ namespace ChatService.chatManager
         public void chat()
         {
             string message;
+            Console.WriteLine("You have joined the " + theme + " chat");
             while ((message = Console.ReadLine()) != ":exit")
             {
                 foreach(ChatService client in chatClients.Values)
@@ -54,6 +55,7 @@ namespace ChatService.chatManager
                 }
             }
 
+            Console.WriteLine("You have left the " + theme + " chat");
             closeConnectionsWithClients();
             centralService.UnregisterChat(theme);
         }
